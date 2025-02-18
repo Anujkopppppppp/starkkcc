@@ -708,7 +708,7 @@ Total Auth Commands: 2
 💡 Additional Tools:
    4. IP Lookup Gate: /ip your_ip ✅
    5. Gateways Hunter: /url website_url ✅ (Limit: 20)
-   6. GPT-4: /gpt Promote ❌
+   6. DeepSeek ai /deepseek Promote ❌
 
 Total Auth Commands: 6
 

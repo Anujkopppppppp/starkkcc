@@ -110,3 +110,27 @@ Traceback (most recent call last):
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
 
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/Charge/BRAINTREE GATE/Braintree [ br ]/single.py", line 63, in stripe_auth_cmd
+    session = httpx.AsyncClient(
+              ^^^^^^^^^^^^^^^^^^
+TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/Charge/BRAINTREE GATE/Braintree [ br ]/single.py", line 63, in stripe_auth_cmd
+    session = httpx.AsyncClient(
+              ^^^^^^^^^^^^^^^^^^
+TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/AUTH/Braintree Auth [ b3 ]/single.py", line 64, in b3_auth_cmd
+    session = httpx.AsyncClient(timeout=30, proxies=proxies, follow_redirects=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/AUTH/Braintree Auth [ b3 ]/single.py", line 64, in b3_auth_cmd
+    session = httpx.AsyncClient(timeout=30, proxies=proxies, follow_redirects=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
