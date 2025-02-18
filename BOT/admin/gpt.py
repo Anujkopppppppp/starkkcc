@@ -3,93 +3,88 @@ import asyncio
 from pyrogram import Client, filters
 from FUNC.usersdb_func import *
 from TOOLS.check_all_func import *
-import openai
 
-openai_api_key = "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"
+# DeepSeek/OpenRouter Configuration
+DEEPSEEK_API_KEY = "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"
+API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
-openai_client = openai.OpenAI(api_key=openai_api_key)
-
-
-async def fetch_response(prompt):
+async def fetch_deepseek_response(prompt):
     data = {
-        "model": "gpt-3.5-turbo",
-        "messages": [
-            {"role": "user", "content": prompt}
-        ]
+        "model": "deepseek/deepseek-r1:free",
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.9,
+        "top_p": 1,
+        "frequency_penalty": 0,
+        "presence_penalty": 0,
+        "repetition_penalty": 1,
+        "top_k": 0,
     }
 
     headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {openai_api_key}"
+        "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+        "HTTP-Referer": "https://anujx.cc",  # Replace with your actual domain
+        "X-Title": "Your Chat Service",  # Replace with your service name
+        "Content-Type": "application/json"
     }
 
     async with httpx.AsyncClient(timeout=30) as client:
-        response = await client.post("https://api.openai.com/v1/chat/completions", json=data, headers=headers)
-        response.raise_for_status()  # Raise an exception if response status is not 2xx
-        completion = response.json()
-        if 'choices' not in completion or len(completion['choices']) == 0 or 'message' not in completion['choices'][0]:
-            raise ValueError("Failed to generate response")
-        return completion["choices"][0]["message"]["content"]
+        try:
+            response = await client.post(
+                API_URL,
+                json=data,
+                headers=headers
+            )
+            response.raise_for_status()
+            
+            completion = response.json()
+            if not completion.get('choices'):
+                raise ValueError("No choices in response")
+            
+            return completion['choices'][0]['message']['content']
+            
+        except httpx.HTTPStatusError as e:
+            error_msg = f"HTTP error {e.response.status_code}: {e.response.text}"
+            raise Exception(error_msg)
+        except json.JSONDecodeError:
+            raise Exception("Invalid JSON response from API")
 
-
-@Client.on_message(filters.command("gpt", [".", "/"]))
-async def cmd_gpt(Client, message):
+@Client.on_message(filters.command("deepseek", [".", "/"]))
+async def cmd_deepseek(Client, message):
     try:
+        # Check user permissions
         checkall = await check_all_thing(Client, message)
-        if checkall[0] == False:
+        if not checkall[0]:
             return
-
-        role = checkall[1]
-
-
-
-
-    # try:
-    #     user_id  = str(message.from_user.id)
-    #     checkall = await check_all_thing(Client , message)
-    #     if checkall[0] == False:
-    #         return
-
-    #     role  = checkall[1]
-    #     getcc = await getmessage(message)
-
-
-
-
-
-
+        
+        # Get prompt from message
         if message.reply_to_message:
             prompt = message.reply_to_message.text
         else:
             try:
                 prompt = message.text.split(" ", 1)[1]
             except IndexError:
-                invalid_message = """<b>Invalid Promote ⚠️</b>\n\nMessage: Not Found Any Valid Promote From Your Input ."""
-                await message.reply_text(invalid_message)
+                await message.reply_text("<b>⚠️ Invalid Request</b>\nPlease provide a question or message.")
                 return
 
-        processing_message = await message.reply_text("⌛️ Answering...")
-
+        processing = await message.reply_text("🧠 Processing...")
+        
+        # Try up to 3 times with exponential backoff
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                response = await fetch_response(prompt)
-                break
-            except httpx.ReadTimeout:
-
-                await asyncio.sleep(2 ** attempt)
-            except Exception as e:
-                import traceback
-                await error_log(traceback.format_exc())
-                await processing_message.edit_text("⚠️ Failed to generate response. Please try again later.")
+                response = await fetch_deepseek_response(prompt)
+                await processing.edit_text(f"<b>{response}</b>")
                 return
-
-        else:
-            await processing_message.edit_text("⚠️ Timeout: The request took too long to process.")
-            return
-
-        await processing_message.edit_text(f"<b>{response}</b>")
-
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    wait_time = 2 ** attempt
+                    await asyncio.sleep(wait_time)
+                else:
+                    await processing.edit_text(f"⚠️ Failed to generate response: {str(e)}")
+                    return
+                    
     except Exception as e:
+        error_msg = f"🚨 Error: {str(e)}"
+        await message.reply_text(error_msg)
         import traceback
         await error_log(traceback.format_exc())

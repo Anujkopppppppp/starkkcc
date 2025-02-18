@@ -1,0 +1,112 @@
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 21, in cmd_pm
+    user_id = str(message.text.split(" ")[1])
+                  ~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 23, in cmd_pm
+    user_id = message.reply_to_message.from_user.id
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 21, in cmd_pm
+    user_id = str(message.text.split(" ")[1])
+                  ~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 23, in cmd_pm
+    user_id = message.reply_to_message.from_user.id
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 21, in cmd_pm
+    user_id = str(message.text.split(" ")[1])
+                  ~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 23, in cmd_pm
+    user_id = message.reply_to_message.from_user.id
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 21, in cmd_pm
+    user_id = str(message.text.split(" ")[1])
+                  ~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 23, in cmd_pm
+    user_id = message.reply_to_message.from_user.id
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 21, in cmd_pm
+    user_id = str(message.text.split(" ")[1])
+                  ~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/promote.py", line 23, in cmd_pm
+    user_id = message.reply_to_message.from_user.id
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/Charge/SITEBASED GATE/sitebase [ chk ]/single.py", line 63, in stripe_auth_cmd
+    session = httpx.AsyncClient(
+              ^^^^^^^^^^^^^^^^^^
+TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/gpt.py", line 76, in cmd_gpt
+    response = await fetch_response(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/starkkcc/BOT/admin/gpt.py", line 28, in fetch_response
+    response.raise_for_status()  # Raise an exception if response status is not 2xx
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/starkkcc/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/admin/gpt.py", line 76, in cmd_gpt
+    response = await fetch_response(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/starkkcc/BOT/admin/gpt.py", line 28, in fetch_response
+    response.raise_for_status()  # Raise an exception if response status is not 2xx
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/starkkcc/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/AUTH/Stripe Auth/single.py", line 63, in pp_auth_cmd
+    session = httpx.AsyncClient(
+              ^^^^^^^^^^^^^^^^^^
+TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
+Traceback (most recent call last):
+  File "/workspaces/starkkcc/BOT/AUTH/Braintree Auth [ b3 ]/single.py", line 64, in b3_auth_cmd
+    session = httpx.AsyncClient(timeout=30, proxies=proxies, follow_redirects=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
